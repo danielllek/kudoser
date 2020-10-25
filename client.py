@@ -3,6 +3,7 @@
 from stravalib.client import Client
 import pickle
 import time
+import pprint
 
 MY_STRAVA_CLIENT_ID, MY_STRAVA_CLIENT_SECRET = open('./client.secret').read().strip().split(',')
 
@@ -49,4 +50,4 @@ print("Athlete's name is {} {}, based in {}, {}"
       .format(athlete.firstname, athlete.lastname, athlete.city, athlete.country))
 
 activities = client.get_activities(limit=100)
-print(list(activities)[0:10])
+pprint.pprint(list(activities)[0:10])
