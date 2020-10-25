@@ -49,5 +49,11 @@ athlete = client.get_athlete()
 print("Athlete's name is {} {}, based in {}, {}"
       .format(athlete.firstname, athlete.lastname, athlete.city, athlete.country))
 
-activities = client.get_activities(limit=100)
-pprint.pprint(list(activities)[0:10])
+activities = client.get_activities(limit=20)
+pprint.pprint(list(activities))
+
+for act in (list(activities)):
+    #pprint.pprint(act.highlighted_kudosers)
+    kudositerator = client.get_activity_kudos(act.id)
+    for kudos in kudositerator:
+        print(kudos.firstname,kudos.lastname)
