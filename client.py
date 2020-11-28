@@ -52,8 +52,27 @@ print("Athlete's name is {} {}, based in {}, {}"
 activities = client.get_activities(limit=20)
 pprint.pprint(list(activities))
 
+kudosyosob = {}
+kudosyosob["krzysztof"] = 5
+kudosyosob["daniel"] = 7
+
+wszystkiekudosy = 0
+
 for act in (list(activities)):
     #pprint.pprint(act.highlighted_kudosers)
     kudositerator = client.get_activity_kudos(act.id)
     for kudos in kudositerator:
+        if kudos.firstname+kudos.lastname in kudosyosob.keys():
+            kudosyosob[kudos.firstname+kudos.lastname] += 1
+        else:
+            kudosyosob[kudos.firstname+kudos.lastname] = 1
+        wszystkiekudosy += 1
         print(kudos.firstname,kudos.lastname)
+
+print(wszystkiekudosy)
+
+#pprint.pprint (kudosyosob)
+#pprint.pprint (sorted(kudosyosob))
+
+for w in sorted(kudosyosob, key=kudosyosob.get, reverse=True):
+    print(w, kudosyosob[w])
